@@ -2,82 +2,135 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import java.util.Random;
 
 public class CalculadoraTest {
     private Calculadora calculadora = new Calculadora();
 
     @Test
-    void somarDoisNumerosPositivos() {
-        int resultado = calculadora.somar(2, 3);
-        assertEquals(5, resultado);
-    }
+     void somarDoisNumerosPositivos() { 
+        Random random = new Random(); 
+        int a = random.nextInt(100);
+        int b = random.nextInt(100); 
+         
+        int resultadoEsperado = a + b; 
+        
+        int resultado = calculadora.somar(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
+    } 
 
     @Test
-    void somarDoisNumerosNegativos() {
-        int resultado = calculadora.somar(-2, -3);
-        assertEquals(-5, resultado);
+    void somarDoisNumerosNegativos() { 
+        Random random = new Random(); 
+        int a = -random.nextInt(100); 
+        int b = -random.nextInt(100);  
+        
+        int resultadoEsperado = (a + b); 
+        
+        int resultado = calculadora.somar(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
     @Test
     void somarComZero() {
-        int resultado = calculadora.somar(5, 0);
-        assertEquals(5, resultado);
+        Random random = new Random(); 
+        int a = random.nextInt(100); 
+        int b = 0; 
+        
+        int resultadoEsperado = a + b; 
+        
+        int resultado = calculadora.somar(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
     @Test
     void somarNumerosGrandes() {
-        int resultado = calculadora.somar(1000000, 2000000);
-        assertEquals(3000000, resultado);
+        Random random = new Random(); 
+        int a = random.nextInt(1000000); 
+        int b = random.nextInt(1000000);  
+        
+        int resultadoEsperado = a + b; 
+        
+        int resultado = calculadora.somar(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
 
     @Test
     void subtrairDoisNumerosPositivos() {
-        int resultado = calculadora.subtrair(7, 3);
-        assertEquals(4, resultado);
+        Random random = new Random();
+        int a = random.nextInt(100); 
+        int b = random.nextInt(100);  
+        
+        int resultadoEsperado = a - b; 
+        
+        int resultado = calculadora.subtrair(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
     @Test
     void subtrairDoisNumerosNegativos() {
-        int resultado = calculadora.subtrair(-5, -3);
-        assertEquals(-2, resultado);
+        Random random = new Random(); 
+        int a = -random.nextInt(100); 
+        int b = -random.nextInt(100);  
+        
+        int resultadoEsperado = (a - b); 
+        
+        int resultado = calculadora.subtrair(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
     @Test
     void subtrairComZero() {
-        int resultado = calculadora.subtrair(5, 0);
-        assertEquals(5, resultado);
+        Random random = new Random(); 
+        int a = random.nextInt(100); 
+        int b = 0;  
+        
+        int resultadoEsperado = a - b; 
+        
+        int resultado = calculadora.subtrair(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
     @Test
     void subtrairNumerosGrandes() {
-        int resultado = calculadora.subtrair(3000000, 1000000);
-        assertEquals(2000000, resultado);
+        Random random = new Random(); 
+        int a = random.nextInt(1000000); 
+        int b = random.nextInt(1000000);  
+        
+        int resultadoEsperado = a - b; 
+        
+        int resultado = calculadora.subtrair(a, b); 
+        assertEquals(resultadoEsperado, resultado); 
     }
 
 
     @Test
-    void multiplicarDoisNumerosPositivos() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.multiplicar(2, 3)).thenReturn(6);
-        int resultado = calculadora.multiplicar(2, 3);
-        assertEquals(6, resultado);
+    void multiplicarDoisNumerosPositivos() { 
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(5).thenReturn(3);
+        int resultado = calculadora.multiplicar(random.nextInt(), random.nextInt()); 
+        assertEquals(15, resultado); 
     }
 
     @Test
     void multiplicarDoisNumerosNegativos() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.multiplicar(-4, -3)).thenReturn(-12);
-        int resultado = calculadora.multiplicar(-4, -3);
-        assertEquals(-12, resultado);
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(-5).thenReturn(-3);
+        int resultado = calculadora.multiplicar(random.nextInt(), random.nextInt()); 
+        assertEquals(15, resultado);  
     }
 
     @Test
     void multiplicarPorZero() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.multiplicar(5, 0)).thenReturn(0);
-        int resultado = calculadora.multiplicar(5, 0);
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(9);
+        int resultado = calculadora.multiplicar(random.nextInt(), 0); 
         assertEquals(0, resultado);
     }
 
@@ -93,34 +146,38 @@ public class CalculadoraTest {
 
     @Test
     void dividirDoisNumerosPositivos() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.dividir(6, 2)).thenReturn(3);
-        int resultado = calculadora.dividir(6, 2);
-        assertEquals(3, resultado);
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(6).thenReturn(2);
+        int resultado = calculadora.dividir(random.nextInt(), random.nextInt()); 
+        assertEquals(3, resultado); 
     }
 
     @Test
     void dividirPorNumeroNegativo() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.dividir(8, -2)).thenReturn(-4);
-        int resultado = calculadora.dividir(8, -2);
-        assertEquals(-4, resultado);
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(8).thenReturn(-2);
+        int resultado = calculadora.dividir(random.nextInt(), random.nextInt()); 
+        assertEquals(-4, resultado); 
     }
 
     @Test
-    public void lancarExcecaoParaDivisaoPorZero() {
+    void excecaoParaDivisaoPorZero() {
         Calculadora calculadora = new Calculadora();
-
+        Random random = mock(Random.class); 
+        int dividendo = random.nextInt();
         assertThrows(ArithmeticException.class, () -> {
-            calculadora.dividir(10, 0);
-        }, "Não é possível dividir por zero");
+            calculadora.dividir(dividendo, 0);
+        }, "Divisão por zero");
     }
 
     @Test
     void dividirNumeroPorEleMesmo() {
-        Calculadora calculadora = Mockito.mock(Calculadora.class);
-        when(calculadora.dividir(5, 5)).thenReturn(1);
-        int resultado = calculadora.dividir(5, 5);
+        Random random = mock(Random.class); 
+        Calculadora calculadora = new Calculadora();
+        when(random.nextInt()).thenReturn(5).thenReturn(5);
+        int resultado = calculadora.dividir(random.nextInt(), random.nextInt());
         assertEquals(1, resultado);
     }
 }
