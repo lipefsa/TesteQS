@@ -12,8 +12,8 @@ public class CalculadoraTest {
     @Test
      void somarDoisNumerosPositivos() { 
         Random random = new Random(); 
-        int a = random.nextInt(100);
-        int b = random.nextInt(100); 
+        int a = random.nextInt(1000);
+        int b = random.nextInt(1000); 
          
         int resultadoEsperado = a + b; 
         
